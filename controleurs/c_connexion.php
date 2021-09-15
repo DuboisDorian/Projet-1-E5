@@ -28,6 +28,7 @@ case 'valideConnexion':
     $mdp = filter_input(INPUT_POST, 'mdp', FILTER_SANITIZE_STRING);
     $visiteur = $pdo->getInfosVisiteur($login, $mdp);
     $comptable = $pdo->getInfoComptable($login,$mdp);
+    
     if (is_array($visiteur)) {
         $id = $visiteur['id'];
         $nom = $visiteur['nom'];

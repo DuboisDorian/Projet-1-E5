@@ -30,11 +30,9 @@ switch ($uc) {
 case 'connexion':
     include 'controleurs/c_connexion.php';
     break;
-case 'accueilVisiteur':
-    break;
+case 'accueil':
+    
     include 'controleurs/c_accueil.php';
-case 'acceuilComptable'
-    include 'controleurs/c_accueil_comptable.php';
     break;
 case 'gererFrais':
     include 'controleurs/c_gererFrais.php';
