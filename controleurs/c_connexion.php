@@ -30,7 +30,7 @@ case 'valideConnexion':
     $visiteur = $pdo->getInfosVisiteur($login, $mdp);
     $comptable = $pdo->getInfoComptable($login,$mdp);
     
-    if (is_array($visiteur)) {
+    if ((!password_verify($mdp,$pdo->getMdpVisiteur($login) ))) {
         $id = $visiteur['id'];
         $nom = $visiteur['nom'];
         $prenom = $visiteur['prenom'];

@@ -210,5 +210,10 @@ class PdoGsbTest extends PHPUnit\Framework\TestCase {
                 'This test has not been implemented yet.'
         );
     }
+    
+    public function testHashMdp($mdp) {
+        $hashMdp = password_hash($mdp, PASSWORD_DEFAULT);
+        $req = "UPDATE visiteur SET mdp =".$hashMdp."WHERE id =".$id.";";
+    }
 
 }
