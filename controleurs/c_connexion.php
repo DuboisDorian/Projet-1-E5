@@ -26,6 +26,7 @@ case 'demandeConnexion':
 case 'valideConnexion':
     $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_STRING);
     $mdp = filter_input(INPUT_POST, 'mdp', FILTER_SANITIZE_STRING);
+    $type;
     $visiteur = $pdo->getInfosVisiteur($login, $mdp);
     $comptable = $pdo->getInfoComptable($login,$mdp);
     
@@ -36,7 +37,7 @@ case 'valideConnexion':
         connecterVisiteur($id, $nom, $prenom);
         header('Location: index.php');
     }elseif(is_array($comptable)){
-    $id = $comptable['id'];
+        $id = $comptable['id'];
         $nom = $comptable['nom'];
         $prenom = $comptable['prenom'];
         connecterComptable($id, $nom, $prenom);

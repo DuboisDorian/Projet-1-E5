@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-<div id="accueil">
+<div id="acceuilcomptable">
     <h2>
         Gestion des frais<small> - Comptable : 
             <?php 
