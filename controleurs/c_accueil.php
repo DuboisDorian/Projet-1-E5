@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Gestion de l'accueil
  *
@@ -13,10 +14,10 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
-
 if ($estConnecte) {
     include 'vues/v_accueil.php';
-      
+} elseif ($estConnecteComptable) {
+    include 'vues/v_acceuil_comptable.php';
 } else {
     include 'vues/v_connexion.php';
 }

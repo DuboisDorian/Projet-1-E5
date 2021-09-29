@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Index du projet GSB
  *
@@ -13,7 +14,6 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
-
 require_once 'includes/fct.inc.php';
 require_once 'includes/class.pdogsb.inc.php';
 session_start();
@@ -24,30 +24,30 @@ require 'vues/v_entete.php';
 $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);
 if ($uc && !$estConnecte) {
     $uc = 'connexion';
-} elseif (empty($uc) ) {
+} elseif (empty($uc)) {
     $uc = 'accueil';
+} elseif ($uc && !$estConnecteComptable) {
+    $uc = 'connexion';
 }
-elseif(empty($uc) ){
-    $uc='accueilComptable';
-}
+
 switch ($uc) {
-case 'connexion':
-    include 'controleurs/c_connexion.php';
-    break;
-case 'accueil':   
-    include 'controleurs/c_accueil.php';
-    break;
-case 'accueilComptable':
-    include 'controleurs/c_accueilComptable.php';
-    break;
-case 'gererFrais':
-    include 'controleurs/c_gererFrais.php';
-    break;
-case 'etatFrais':
-    include 'controleurs/c_etatFrais.php';
-    break;
-case 'deconnexion':
-    include 'controleurs/c_deconnexion.php';
-    break;
+    case 'connexion':
+        include 'controleurs/c_connexion.php';
+        break;
+    case 'accueil':
+        include 'controleurs/c_accueil.php';
+        break;
+    case 'accueilComptable':
+        include 'controleurs/c_accueilComptable.php';
+        break;
+    case 'gererFrais':
+        include 'controleurs/c_gererFrais.php';
+        break;
+    case 'etatFrais':
+        include 'controleurs/c_etatFrais.php';
+        break;
+    case 'deconnexion':
+        include 'controleurs/c_deconnexion.php';
+        break;
 }
 require 'vues/v_pied.php';

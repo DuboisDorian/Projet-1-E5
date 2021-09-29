@@ -96,34 +96,43 @@ class PdoGsb {
                 . 'FROM visiteur '
                 . 'WHERE visiteur.login = :unLogin'
         );
-        $hashMdp = password_hash($mdp, PASSWORD_DEFAULT);
-        $req = "UPDATE visiteur SET mdp='" . $hashMdp . "' WHERE id='" . $id . "';";
+        
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
         $requetePrepare->execute();
             return $requetePrepare->fetch();       
     }
     public function getMdpVisiteur($login){
         $requetePrepare = PdoGsb::$monPdo->prepare(
-                'SELECT mdp'
-                .'FROM visiteur'
-                .'WHERE visiteur.login = :unlogin'
-        );
-        $requetePrepare->bindParam('unLogin',$login, PDO::PARAM_STR);
-        $requetePrepare->execute();
-        return $requetePrepare->fetch()['mdp'];
+        'SELECT mdp '
+        . 'FROM visiteur '
+        . 'WHERE visiteur.login = :unLogin'
+    );
+    $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
+    $requetePrepare->execute();
+    return $requetePrepare->fetch()['mdp'];
     }
 
-    public function getInfoComptable($login, $mdp) {
+    public function getInfoComptable($login) {
         $requetePrepare = PdoGsb::$monPdo->prepare(
                 'SELECT comptable.id AS id, comptable.nom AS nom, '
                 . 'comptable.prenom AS prenom '
                 . 'FROM comptable '
-                . 'WHERE comptable.login = :unLogin AND comptable.mdp = :unMdp'
+                . 'WHERE comptable.login = :unLogin'
         );
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
         $requetePrepare->execute();
         return $requetePrepare->fetch();
+    }
+    
+    public function getMdpComptable($login){
+        $requetePrepare = PdoGsb::$monPdo->prepare(
+                'SELECT mdp'
+                . 'from comptable'
+                .'Where comptable.login = :unlogin'
+        );
+        $requetePrepare->bindParam('unLogin',$login, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        return $requetePrepare->fetch['mdp'];
     }
 
     /**
