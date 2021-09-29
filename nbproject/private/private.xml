@@ -3,23 +3,30 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/index.php</file>
             <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/vues/v_entete.php</file>
-            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/nbproject/project.xml</file>
-            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/controleurs/c_accueil.php</file>
-            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/vues/v_connexion.php</file>
+            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/index.php</file>
             <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/nbproject/project.properties</file>
-            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/controleurs/c_accueilComptable.php</file>
+            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/tests/gendatas/majGSB.php</file>
+            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/controleurs/c_etatFrais.php</file>
+            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/tests/gendatas/fonctions.php</file>
             <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/vues/v_etatFrais.php</file>
-            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/nbproject/private/private.xml</file>
             <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/vues/v_erreurs.php</file>
+            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/tests/password/testmdp.php</file>
             <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/includes/fct.inc.php</file>
             <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/nbproject/private/private.properties</file>
-            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/nbproject/private/config.properties</file>
-            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/vues/v_pied.php</file>
             <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/vues/v_accueil.php</file>
             <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/vues/v_acceuil_comptable.php</file>
+            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/nbproject/project.xml</file>
+            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/tests/phpunit/includes/class.pdogsb.incTest.php</file>
+            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/controleurs/c_accueil.php</file>
+            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/vues/v_connexion.php</file>
+            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/controleurs/c_accueilComptable.php</file>
+            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/nbproject/private/private.xml</file>
+            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/controleurs/c_gererFrais.php</file>
+            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/nbproject/private/config.properties</file>
+            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/vues/v_pied.php</file>
             <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/includes/class.pdogsb.inc.php</file>
+            <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/controleurs/c_deconnexion.php</file>
             <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/controleurs/c_connexion.php</file>
             <file>file:/C:/Users/dorian.dubois/Documents/GSB/GSB_AppliMVC/vues/v_deconnexion.php</file>
         </group>
