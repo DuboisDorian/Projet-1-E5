@@ -63,7 +63,7 @@ class PdoGsb {
      * objet donné, ou dans n'importe quel ordre pendant la séquence d'arrêt.
      */
     public function __destruct() {
-        PdoGsb::$monPdo = null;
+         PdoGsb::$monPdo = null;
     }
 
     /**
@@ -103,13 +103,13 @@ class PdoGsb {
     }
     public function getMdpVisiteur($login){
         $requetePrepare = PdoGsb::$monPdo->prepare(
-        'SELECT mdp '
-        . 'FROM visiteur '
-        . 'WHERE visiteur.login = :unLogin'
-    );
-    $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
-    $requetePrepare->execute();
-    return $requetePrepare->fetch()['mdp'];
+                'SELECT mdp'
+                .'FROM visiteur'
+                .'WHERE visiteur.login = :unlogin'
+        );
+        $requetePrepare->bindParam('unLogin',$login, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        return $requetePrepare->fetch()['mdp'];
     }
 
     public function getInfoComptable($login) {

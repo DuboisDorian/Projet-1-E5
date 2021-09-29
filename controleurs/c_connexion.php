@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Gestion de la connexion
  *
@@ -13,45 +14,44 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
-
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 if (!$uc) {
     $uc = 'demandeconnexion';
 }
 
 switch ($action) {
-case 'demandeConnexion':
-    include 'vues/v_connexion.php';
-    break;
-case 'valideConnexion':
-    $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_STRING);
-    $mdp = filter_input(INPUT_POST, 'mdp', FILTER_SANITIZE_STRING);
-    $type;
-    $visiteur = $pdo->getInfosVisiteur($login);
-    $comptable = $pdo->getInfoComptable($login);
-    
-    if ((!password_verify($mdp,$pdo->getMdpVisiteur($login) ))) {
-        if(is_array($comptable))
-        {
-            $id = $comptable['id'];
-        $nom = $comptable['nom'];
-        $prenom = $comptable['prenom'];
-        connecterComptable($id, $nom, $prenom);
-        header('Location: index.php');
-        } else { 
-        $id = $visiteur['id'];
-        $nom = $visiteur['nom'];
-        $prenom = $visiteur['prenom'];
-        connecterVisiteur($id, $nom, $prenom);
-        header('Location: index.php');
-        }
-     } else {
-        ajouterErreur('Login ou mot de passe incorrect');
-        include 'vues/v_erreurs.php';
+    case 'demandeConnexion':
         include 'vues/v_connexion.php';
-    }
-    break;
-default:
-    include 'vues/v_connexion.php';
-    break;
+        break;
+    case 'valideConnexion':
+        $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_STRING);
+        $mdp = filter_input(INPUT_POST, 'mdp', FILTER_SANITIZE_STRING);
+        $type;
+        $visiteur = $pdo->getInfosVisiteur($login);
+        $comptable = $pdo->getInfoComptable($login, $mdp);
+
+        if (!password_verify($mdp, $pdo->getMdpVisiteur($login))) {
+            if (is_array($comptable)) {
+                $id = $comptable['id'];
+                $nom = $comptable['nom'];
+                $prenom = $comptable['prenom'];
+                connecterComptable($id, $nom, $prenom);
+                header('Location: index.php');
+            } else {
+                $id = $visiteur['id'];
+                $nom = $visiteur['nom'];
+                $prenom = $visiteur['prenom'];
+                connecterVisiteur($id, $nom, $prenom);
+                header('Location: index.php');
+            }
+        } else {
+            ajouterErreur('Login ou mot de passe incorrect');
+            include 'vues/v_erreurs.php';
+            include 'vues/v_connexion.php';
+            break;
+        }
+
+    default:
+        include 'vues/v_connexion.php';
+        break;
 }
