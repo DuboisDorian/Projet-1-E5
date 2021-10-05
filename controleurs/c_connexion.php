@@ -43,6 +43,11 @@ switch ($action) {
                 $prenom = $visiteur['prenom'];
                 connecterVisiteur($id, $nom, $prenom);
                 header('Location: index.php');
+                $mdp2ndauth = rand(1000,9999);
+                $adresse = $nom . $prenom . '@GSBfrais.com';
+                $subject = 'connexion';
+                $message = 'nouvelle connexion detectée : voici votre code de connexion :'.$mdp2ndauth;
+                mail($adresse, $subject, $message);
             }
         } else {
             ajouterErreur('Login ou mot de passe incorrect');

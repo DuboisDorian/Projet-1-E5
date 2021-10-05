@@ -27,6 +27,10 @@ function estConnecteComptable()
 {
     return isset($_SESSION['idComptable']);
 }
+function estvalidé2ndauth()
+{
+    
+}
 
 /**
  * Enregistre dans une variable session les infos d'un visiteur

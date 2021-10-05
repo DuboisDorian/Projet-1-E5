@@ -20,11 +20,12 @@ session_start();
 $pdo = PdoGsb::getPdoGsb();
 $estConnecte = estConnecte();
 $estConnecteComptable = estConnecteComptable();
+
 require 'vues/v_entete.php';
 $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);
 if ($uc && !$estConnecte) {
     $uc = 'connexion';
-} elseif (empty($uc)) {
+} elseif (empty($uc) ) {
     $uc = 'accueil';
 } elseif ($uc && !$estConnecteComptable) {
     $uc = 'connexion';
