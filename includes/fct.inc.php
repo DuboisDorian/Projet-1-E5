@@ -21,15 +21,15 @@
  */
 function estConnecte()
 {
-    return isset($_SESSION['idVisiteur']);
+    return isset($_SESSION['idVisiteur']) && isset($_SESSION['codeA2f']);
 }
 function estConnecteComptable()
 {
     return isset($_SESSION['idComptable']);
 }
-function estConnecteA2F()
+function ConnecteA2F($code)
 {
-    return isset($_SESSION['code']);
+    $_SESSION['codeA2f']=$code;
 }
 
 /**

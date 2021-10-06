@@ -29,7 +29,11 @@ switch ($action) {
         $type;
         $visiteur = $pdo->getInfosVisiteur($login);
         $comptable = $pdo->getInfoComptable($login, $mdp);
-
+        $email = $visiteur['email'];
+        $code = rand(1000, 9999);
+        $pdo->setCodeA2F($id, $code);
+        mail($email, '[GSB-AppliFrais]Code de verification', "Code : " . $code);
+        include 'vues/v_a2f.php';
         if (!password_verify($mdp, $pdo->getMdpVisiteur($login))) {
             if (is_array($comptable)) {
                 $id = $comptable['id'];
@@ -43,11 +47,6 @@ switch ($action) {
                 $prenom = $visiteur['prenom'];
                 connecterVisiteur($id, $nom, $prenom);
                 header('Location: index.php');
-                $mdpA2F = rand(1000,9999);
-                $adresse = $nom . $prenom . '@GSBfrais.com';
-                $subject = 'connexion';
-                $message = 'nouvelle connexion detectée : voici votre code de connexion :'.$mdpA2F;
-                mail($adresse, $subject, $message);
             }
         } else {
             ajouterErreur('Login ou mot de passe incorrect');
@@ -55,6 +54,17 @@ switch ($action) {
             include 'vues/v_connexion.php';
             break;
         }
+    case 'valideA2FConnexion':
+        $code = filter_input(INPUT_POST, 'code', FILTER_SANITIZE_STRING);
+        if ($pdo->getCodeVisiteur($_SESSION['idVisiteur']) !== $code) {
+            ajouterErreur('Code de vérification incorrect');
+            include 'vues/v_erreurs.php';
+            include 'vues/v_code2facteurs.php';
+        } else {
+            connecterA2F($code);
+            header("location:index.php");
+        }
+        break;
 
     default:
         include 'vues/v_connexion.php';

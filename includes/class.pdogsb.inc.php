@@ -92,7 +92,7 @@ class PdoGsb {
     public function getInfosVisiteur($login) {
         $requetePrepare = PdoGsb::$monPdo->prepare(
                 'SELECT visiteur.id AS id, visiteur.nom AS nom, '
-                . 'visiteur.prenom AS prenom '
+                . 'visiteur.prenom AS prenom,visiteur.email as email '
                 . 'FROM visiteur '
                 . 'WHERE visiteur.login = :unLogin'
         );
@@ -134,15 +134,28 @@ class PdoGsb {
         $requetePrepare->execute();
         return $requetePrepare->fetch['mdp'];
     }
-    public function getA2Fvisiteur($code){
-        $requettePrepare = PdoGsb::$monPdo->prepare(
-                'select code'
-                .'from visiteur'
-                .'where visiteur.login = :unlogin'
+    public function setCOdeA2f($id,$code)
+    {
+        $requettePrepare= PdoGsb::$monPdo->prepare(
+                'update visiteur'
+                .'Set codea2f = :unCode'
+                ."where visiteur.id = :unIdVisiteur"
         );
-        $requettePrepare->bindParam('unlogin',$login, PDO::PARAM_STR);
+        $requettePrepare->bindParam(':unCode',$code, PDO::PARAM_STR);
+        $requettePrepare->bindParam(':unIdVisiteur',$id, PDO::PARAM_STR);
         $requettePrepare->execute();
-        return $requettePrepare->fetch['code'];
+        
+    }
+    public function GetCodeVisiteur($id)
+    {
+        $requettePrepare= PdoGsb::$monPdo->prepare(
+                'select code as codea2f'
+                .'from visiteur'
+                .'where visiteur.id = :unid'
+                );
+        $requettePrepare->bindParam(':unid',$id,PDO::PARAM_STR);
+        $requettePrepare->execute();
+        return $requettePrepare ->fetch()['codea2f'];
     }
     
     /**

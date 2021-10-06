@@ -20,15 +20,11 @@ session_start();
 $pdo = PdoGsb::getPdoGsb();
 $estConnecte = estConnecte();
 $estConnecteComptable = estConnecteComptable();
-$estConnecteA2F = estConnecteA2F();
+$estConnecteA2F = ConnecteA2F();
 require 'vues/v_entete.php';
 $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);
 if ($uc && !$estConnecte) {
-    if (!$estConnecte && $estConnecteA2F)
-        $uc = 'connexion';
-    else {
-        $uc = 'connexionA2F';
-    }
+    $uc = 'connexion';
 } elseif (empty($uc)) {
     $uc = 'accueil';
 } elseif ($uc && $estConnecteComptable) {
@@ -42,7 +38,7 @@ switch ($uc) {
         include 'controleurs/c_connexion.php';
         break;
     case'connexionA2F':
-        include 'controleur/c_connexionA2F.php';
+        include 'controleurs/c_connexionA2F.php';
         break;
     case 'accueil':
         include 'controleurs/c_accueil.php';
