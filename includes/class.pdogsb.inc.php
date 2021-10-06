@@ -134,6 +134,16 @@ class PdoGsb {
         $requetePrepare->execute();
         return $requetePrepare->fetch['mdp'];
     }
+    public function getA2Fvisiteur($code){
+        $requettePrepare = PdoGsb::$monPdo->prepare(
+                'select code'
+                .'from visiteur'
+                .'where visiteur.login = :unlogin'
+        );
+        $requettePrepare->bindParam('unlogin',$login, PDO::PARAM_STR);
+        $requettePrepare->execute();
+        return $requettePrepare->fetch['code'];
+    }
     
     /**
      * Retourne sous forme d'un tableau associatif toutes les lignes de frais

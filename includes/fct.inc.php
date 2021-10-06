@@ -27,9 +27,9 @@ function estConnecteComptable()
 {
     return isset($_SESSION['idComptable']);
 }
-function estvalidé2ndauth()
+function estConnecteA2F()
 {
-    
+    return isset($_SESSION['code']);
 }
 
 /**

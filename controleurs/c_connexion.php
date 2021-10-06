@@ -43,10 +43,10 @@ switch ($action) {
                 $prenom = $visiteur['prenom'];
                 connecterVisiteur($id, $nom, $prenom);
                 header('Location: index.php');
-                $mdp2ndauth = rand(1000,9999);
+                $mdpA2F = rand(1000,9999);
                 $adresse = $nom . $prenom . '@GSBfrais.com';
                 $subject = 'connexion';
-                $message = 'nouvelle connexion detectée : voici votre code de connexion :'.$mdp2ndauth;
+                $message = 'nouvelle connexion detectée : voici votre code de connexion :'.$mdpA2F;
                 mail($adresse, $subject, $message);
             }
         } else {
