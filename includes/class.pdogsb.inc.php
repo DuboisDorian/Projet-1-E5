@@ -63,7 +63,7 @@ class PdoGsb {
      * objet donné, ou dans n'importe quel ordre pendant la séquence d'arrêt.
      */
     public function __destruct() {
-         PdoGsb::$monPdo = null;
+        PdoGsb::$monPdo = null;
     }
 
     /**
@@ -87,32 +87,64 @@ class PdoGsb {
      *
      * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
      */
-    
-    
+    /*     * public function getInfosVisiteur($login, $mdp)
+      {
+      $requetePrepare = PdoGsb::$monPdo->prepare(
+      'SELECT visiteur.id AS id, visiteur.nom AS nom, '
+      . 'visiteur.prenom AS prenom '
+      . 'FROM visiteur '
+      . 'WHERE visiteur.login = :unLogin AND visiteur.mdp = :unMdp'
+      );
+      $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
+      $requetePrepare->bindParam(':unMdp', md5($mdp) , PDO::PARAM_STR);
+      $requetePrepare->execute();
+      return $requetePrepare->fetch();
+      }* */
     public function getInfosVisiteur($login) {
         $requetePrepare = PdoGsb::$monPdo->prepare(
                 'SELECT visiteur.id AS id, visiteur.nom AS nom, '
-                . 'visiteur.prenom AS prenom,visiteur.email as email '
+                . 'visiteur.prenom AS prenom, visiteur.email AS email '
                 . 'FROM visiteur '
                 . 'WHERE visiteur.login = :unLogin'
         );
-        
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
         $requetePrepare->execute();
-            return $requetePrepare->fetch();       
+
+        return $requetePrepare->fetch();
     }
-    public function getMdpVisiteur($login){
+
+    public function getMdpVisiteur($login) {
         $requetePrepare = PdoGsb::$monPdo->prepare(
-                'SELECT mdp'
-                .'FROM visiteur'
-                .'WHERE visiteur.login = :unlogin'
+                'SELECT mdp '
+                . 'FROM visiteur '
+                . 'WHERE visiteur.login = :unLogin'
         );
-        $requetePrepare->bindParam('unLogin',$login, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
         $requetePrepare->execute();
         return $requetePrepare->fetch()['mdp'];
     }
 
-    public function getInfoComptable($login) {
+    public function setCodeVisiteur($id,$code) {
+        $requestPrepare = PdoGsb::$monPdo->prepare(
+                'UPDATE visiteur SET code = :code WHERE id = :id; '
+        );
+        $requestPrepare->bindParam(':id', $id, PDO::PARAM_STR);
+        $requestPrepare->bindParam(':code', $code, PDO::PARAM_STR);
+        $requestPrepare->execute();
+    }
+
+    public function getCodeVisiteur($id) {
+        $requetePrepare = PdoGsb::$monPdo->prepare(
+                'SELECT code as codeAuth '
+                . 'FROM visiteur '
+                . 'WHERE visiteur.id = :id'
+        );
+        $requetePrepare->bindParam(':id', $id, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        return $requetePrepare->fetch()['codeAuth'];
+    }
+
+    public function getInfosComptable($login) {
         $requetePrepare = PdoGsb::$monPdo->prepare(
                 'SELECT comptable.id AS id, comptable.nom AS nom, '
                 . 'comptable.prenom AS prenom '
@@ -123,41 +155,18 @@ class PdoGsb {
         $requetePrepare->execute();
         return $requetePrepare->fetch();
     }
-    
-    public function getMdpComptable($login){
+
+    public function getMdpComptable($login) {
         $requetePrepare = PdoGsb::$monPdo->prepare(
-                'SELECT mdp'
-                . 'from comptable'
-                .'Where comptable.login = :unlogin'
+                'SELECT mdp '
+                . 'FROM comptable '
+                . 'WHERE comptable.login = :unLogin'
         );
-        $requetePrepare->bindParam('unLogin',$login, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
         $requetePrepare->execute();
-        return $requetePrepare->fetch['mdp'];
+        return $requetePrepare->fetch()['mdp'];
     }
-    public function setCOdeA2f($id,$code)
-    {
-        $requettePrepare= PdoGsb::$monPdo->prepare(
-                'update visiteur'
-                .'Set codea2f = :unCode'
-                ."where visiteur.id = :unIdVisiteur"
-        );
-        $requettePrepare->bindParam(':unCode',$code, PDO::PARAM_STR);
-        $requettePrepare->bindParam(':unIdVisiteur',$id, PDO::PARAM_STR);
-        $requettePrepare->execute();
-        
-    }
-    public function GetCodeVisiteur($id)
-    {
-        $requettePrepare= PdoGsb::$monPdo->prepare(
-                'select code as codea2f'
-                .'from visiteur'
-                .'where visiteur.id = :unid'
-                );
-        $requettePrepare->bindParam(':unid',$id,PDO::PARAM_STR);
-        $requettePrepare->execute();
-        return $requettePrepare ->fetch()['codea2f'];
-    }
-    
+
     /**
      * Retourne sous forme d'un tableau associatif toutes les lignes de frais
      * hors forfait concernées par les deux arguments.

@@ -20,40 +20,28 @@ session_start();
 $pdo = PdoGsb::getPdoGsb();
 $estConnecte = estConnecte();
 $estConnecteComptable = estConnecteComptable();
-$estConnecteA2F = ConnecteA2F();
 require 'vues/v_entete.php';
 $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);
-if ($uc && !$estConnecte) {
+if ($uc && !$estConnecte && !$estConnecteComptable) {
     $uc = 'connexion';
 } elseif (empty($uc)) {
     $uc = 'accueil';
-} elseif ($uc && $estConnecteComptable) {
-    $uc = 'connexion';
-} else {
-    $uc = 'deconnexion';
 }
-
 switch ($uc) {
-    case 'connexion':
-        include 'controleurs/c_connexion.php';
-        break;
-    case'connexionA2F':
-        include 'controleurs/c_connexionA2F.php';
-        break;
-    case 'accueil':
-        include 'controleurs/c_accueil.php';
-        break;
-    case 'accueilComptable':
-        include 'controleurs/c_accueilComptable.php';
-        break;
-    case 'gererFrais':
-        include 'controleurs/c_gererFrais.php';
-        break;
-    case 'etatFrais':
-        include 'controleurs/c_etatFrais.php';
-        break;
-    case 'deconnexion':
-        include 'controleurs/c_deconnexion.php';
-        break;
+case 'connexion':
+    include 'controleurs/c_connexion.php';
+    break;
+case 'accueil':
+    include 'controleurs/c_accueil.php';
+    break;
+case 'gererFrais':
+    include 'controleurs/c_gererFrais.php';
+    break;
+case 'etatFrais':
+    include 'controleurs/c_etatFrais.php';
+    break;
+case 'deconnexion':
+    include 'controleurs/c_deconnexion.php';
+    break;
 }
 require 'vues/v_pied.php';

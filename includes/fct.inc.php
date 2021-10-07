@@ -21,17 +21,12 @@
  */
 function estConnecte()
 {
-    return isset($_SESSION['idVisiteur']) && isset($_SESSION['codeA2f']);
+    return isset($_SESSION['idVisiteur']) && isset($_SESSION['code']);
 }
 function estConnecteComptable()
 {
     return isset($_SESSION['idComptable']);
 }
-function ConnecteA2F($code)
-{
-    $_SESSION['codeA2f']=$code;
-}
-
 /**
  * Enregistre dans une variable session les infos d'un visiteur
  *
@@ -41,19 +36,24 @@ function ConnecteA2F($code)
  *
  * @return null
  */
-function connecterVisiteur($idVisiteur, $nom, $prenom)
+function connecter($idVisiteur, $nom, $prenom)
 {
     $_SESSION['idVisiteur'] = $idVisiteur;
     $_SESSION['nom'] = $nom;
     $_SESSION['prenom'] = $prenom;
 }
-function connecterComptable($idcomptable, $nom, $prenom)
+
+function connecterAuthentification($code) 
+{
+    $_SESSION['code'] = $code;
+}
+
+function connecterComptable($idComptable, $nom, $prenom)
 {
     $_SESSION['idComptable'] = $idComptable;
     $_SESSION['nom'] = $nom;
     $_SESSION['prenom'] = $prenom;
 }
-
 /**
  * Détruit la session active
  *
